@@ -79,26 +79,18 @@ header {
 
   .panel {
     margin-bottom: 1em;
-    @media #{$small-only} {
+    // change panel background image for each photo
+    p {
+      background-image: url("/assets/photo1.jpg");
+      height: 160px;
+      background-size: cover;
       
     }
-  @media #{$large-up} {
-    
-  // margin-top: 1.5em;
-  }
-
-    background-image: url("/assets/photo1.jpg");
-    height: 160px;
-    // width: 100%;
-    background-size: cover;
   }
 
     .large-12.columns .row {
       @include border();
       margin-top: 1em;
       padding-bottom: 0;
-
-      @media #{$small-only} {
-      }
     }
 }
