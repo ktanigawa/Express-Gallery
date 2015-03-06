@@ -1,0 +1,96 @@
+@import "partials/settings";
+@import "partials/foundation";
+
+/*
+  MIXINS
+ */
+@mixin gallery-font($gal-font-color: $iron, $gal-font-weight: normal, $gal-font-size: 1em) {
+  color: $gal-font-color;
+  font-weight: $gal-font-weight;
+  font-size: $gal-font-size;
+}
+
+@mixin border($direction: 'bottom') {
+  @if $direction == 'left' {
+    padding-left: 1em;
+    border-left: 1px dotted $aluminum;
+  } @else {
+    padding-bottom: 1em;
+    border-bottom: 1px dotted $aluminum;
+  }
+}
+
+/*
+  THEME STYLES
+ */
+
+html {
+  //TODO: check out what is actually causing funky horizontal scrollbars. I'm sorry, Kelli. :C
+  overflow-x: hidden;
+}
+
+body {
+  @include gallery-font($aluminum, normal, 1em);
+}
+
+header {
+  padding-top: 1em;
+  // background-color: red;
+
+  h1.name {
+    // background-color: orange;
+
+    a {
+      @include gallery-font($monsoon, bold, 1em);
+      text-transform: uppercase;
+
+      &:hover {
+        @include gallery-font($aluminum, bold, 1em);
+      }
+    }
+  }
+
+  .panel {
+  
+    p {
+      @include border(left);
+      line-height: 1.3em;
+      
+    }
+  }
+}
+
+.slider-container {
+  @include border();
+}
+
+.slick-slider {
+
+  .slick-prev:before, .slick-next:before {
+    color: $monsoon;
+  }
+
+  .slick-list.draggable {
+    max-height: 250px;
+  }
+}
+
+#photos {
+
+  .panel {
+    margin-bottom: 1em;
+    // change panel background image for each photo
+    p {
+      background-image: url("/assets/photo1.jpg");
+      height: 160px;
+      background-size: cover;
+      
+    }
+  }
+
+    .large-12.columns .row {
+      @include border();
+      margin-top: 1em;
+      padding-bottom: 0;
+    }
+}
