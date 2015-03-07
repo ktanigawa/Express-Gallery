@@ -48,7 +48,8 @@ html(lang="en")
                   .slick-slider
                     for photo in photos
                       div
-                        img(src='#{photo.link}', alt='#{photo.author}')
+                        a(href="/gallery/#{photo._id}")
+                          img.fade(src='#{photo.link}', alt='#{photo.author}')
             #photos
               .row
                 .large-12.columns
@@ -57,7 +58,7 @@ html(lang="en")
                       .large-4.medium-4.columns
                         .panel
                           a(href="/gallery/#{photo._id}")
-                            p(style="background-image: url('#{photo.link}')")
+                            p.fade(style="background-image: url('#{photo.link}')")
                             span.author= photo.author
 
     script(src="/bower_components/modernizr/modernizr.js")

@@ -3023,6 +3023,23 @@ h3 {
   font-weight: bold;
   font-size: 1em; }
 
+a {
+  color: #777777;
+  font-weight: bold;
+  font-size: 1em; }
+  a:hover {
+    color: #999999;
+    font-weight: bold;
+    font-size: 1em; }
+
+.fade {
+  opacity: 1;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out; }
+  .fade:hover {
+    opacity: 0.5; }
+
 header {
   padding-top: 1em; }
   header h1.name a {
