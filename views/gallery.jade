@@ -62,25 +62,11 @@ html(lang="en")
               .row
                 .large-12.columns
                   .row
-                    .large-4.medium-4.columns
-                      .panel
-                        p
-                    .large-4.medium-4.columns
-                      .panel
-                        p
-                    .large-4.medium-4.columns
-                      .panel
-                        p
-                  .row
-                    .large-4.medium-4.columns
-                      .panel
-                        p
-                    .large-4.medium-4.columns
-                      .panel
-                        p
-                    .large-4.medium-4.columns
-                      .panel
-                        p
+                    for photo in photos
+                      .large-4.medium-4.columns
+                        .panel
+                          a(href="/gallery/#{photo._id}")
+                            p(style="background-image: url('#{photo.link}')")
 
     script(src="/bower_components/modernizr/modernizr.js")
     script(src="/bower_components/jquery/dist/jquery.min.js")
