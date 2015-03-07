@@ -11,9 +11,8 @@ block content
               img(src="#{photo.link}" alt="Photo 1")
               p= photo.description
           .large-4.columns.show-for-large-up#photos
-            .panel
-              p
-            .panel
-              p
-            .panel
-              p
+            for photo in photos
+              .panel
+                a(href="/gallery/#{photo._id}")
+                  p(style="background-image: url('#{photo.link}')")
+                  span.author= photo.author
