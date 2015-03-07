@@ -1,0 +1,23 @@
+extends ./gallery.jade
+
+block content
+  .row
+    .large-12.columns
+      h3 Edit Photo
+      .section-container.tabs(data-section='')
+        section.section
+          .content(data-slug='panel1')
+            form(action="/gallery/#{photo._id}?_method=PUT", method="POST", class="edit_photo_form")
+              .row.collapse
+                .large-2.columns
+                  label.inline Author
+                .large-10.columns
+                  input#author(type='text', value="#{photo.author}", name="author")
+              .row.collapse
+                .large-2.columns
+                  label.inline  Link to Image
+                .large-10.columns
+                  input#link(type='text', value="#{photo.link}", name="link")
+              label Description
+              textarea(rows='4', name="description")= photo.description
+              button.radius.button(type='submit') Submit

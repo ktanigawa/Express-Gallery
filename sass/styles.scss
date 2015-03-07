@@ -33,6 +33,10 @@ body {
   @include gallery-font($aluminum, normal, 1em);
 }
 
+h3 {
+  @include gallery-font($aluminum, bold, 1em);
+}
+
 header {
   padding-top: 1em;
   // background-color: red;
@@ -75,6 +79,16 @@ header {
   }
 }
 
+#login-form {
+  h3 {
+    margin-top: 2em;
+  }
+}
+
+/*
+  AFFECTS BOTH GALLERY.JADE PHOTO ROWS + PHOTO.JADE SIDE BAR PHOTO COLUMNS
+ */
+
 #photos {
 
   .panel {
@@ -93,4 +107,18 @@ header {
       margin-top: 1em;
       padding-bottom: 0;
     }
+}
+
+/*
+  SPECIFIC TO PHOTO.JADE (INDIVIDUAL PHOTO DETAILS PAGES)
+ */
+
+#main-photo {
+  img {
+    margin-bottom: 1em;
+  }
+
+  p {
+    margin-bottom: 1em;
+  }
 }

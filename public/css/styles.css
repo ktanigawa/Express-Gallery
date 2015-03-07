@@ -3018,6 +3018,11 @@ body {
   font-weight: normal;
   font-size: 1em; }
 
+h3 {
+  color: #999999;
+  font-weight: bold;
+  font-size: 1em; }
+
 header {
   padding-top: 1em; }
   header h1.name a {
@@ -3043,6 +3048,12 @@ header {
 .slick-slider .slick-list.draggable {
   max-height: 250px; }
 
+#login-form h3 {
+  margin-top: 2em; }
+
+/*
+  AFFECTS BOTH GALLERY.JADE PHOTO ROWS + PHOTO.JADE SIDE BAR PHOTO COLUMNS
+ */
 #photos .panel {
   margin-bottom: 1em; }
   #photos .panel p {
@@ -3054,3 +3065,11 @@ header {
   border-bottom: 1px dotted #999999;
   margin-top: 1em;
   padding-bottom: 0; }
+
+/*
+  SPECIFIC TO PHOTO.JADE (INDIVIDUAL PHOTO DETAILS PAGES)
+ */
+#main-photo img {
+  margin-bottom: 1em; }
+#main-photo p {
+  margin-bottom: 1em; }

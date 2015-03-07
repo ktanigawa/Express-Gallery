@@ -3,7 +3,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
 var photoSchema = new Schema({
-  autor: String,
+  author: String,
   link: String,
   description: String,
   created_at: Date

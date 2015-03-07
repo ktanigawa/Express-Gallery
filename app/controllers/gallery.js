@@ -1,5 +1,25 @@
 var express = require('express');
 var router = express.Router();
+var Photo = require('./../models/photo');
+var auth = require('./auth');
+
+function ensureAuthenticated (req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  }
+  res.redirect('/login');
+}
+
+router.get('/admin', ensureAuthenticated, function (req, res) {
+  // calls all photos in database
+  Photo.find(function (err, photos ) {
+    if (err) throw err;
+    console.log(photos);
+    // rendering jade template gallery all of the photos are passed to template
+    // for photo in photos
+    res.render('admin', { photos : photos });
+  });
+});
 
 //app.get('/') route will look like router.list
 // Renders Main Gallery Page
@@ -17,8 +37,32 @@ router.list = function (req, res) {
 //all other routes will look like router.*()
 // Renders gallery photo form 
 // url /gallery/new
-router.get('/new', function (req, res) {
+router.get('/new', ensureAuthenticated, function (req, res) {
   res.render('new_photo');
+});
+
+
+// Updates gallery photo
+router.put('/:id', ensureAuthenticated, function (req, res) {
+  // http://mongoosejs.com/docs/api.html#query_Query-findOneAndUpdate
+  Photo.findOneAndUpdate({_id : req.params.id}, {$set: {
+    author: req.body.author,
+    link: req.body.link,
+    description: req.body.description
+  }}, function (err, photo) {
+    if (err) throw err;
+    // Redirects to /:id
+    res.redirect('/gallery/'+req.params.id);
+  });
+});
+
+// Renders prefilled photo form
+router.get('/:id/edit', ensureAuthenticated, function (req, res) {
+  // find photo 
+  Photo.findOne({_id : req.params.id}, function (err, photo) {
+    // ++edit_photo.jade
+    res.render('edit_photo', {photo : photo});
+  });
 });
 
 // Renders single gallery photo page 
@@ -31,33 +75,10 @@ router.get('/:id', function (req, res) {
   });
 });
 
-// Updates gallery photo
-router.put('/:id', function (req, res) {
-  // http://mongoosejs.com/docs/api.html#query_Query-findOneAndUpdate
-  Photo.findOneAndUpdate({_id : req.params.id}, {$set: {
-    author: req.body.author,
-    link: req.body.link,
-    description: req.body.description
-  }}, function (err, photo) {
-    if (err) throw err;
-    // Redirects to /:id
-    res.redirect('/'+req.params.id);
-  });
-});
-
-// Renders prefilled photo form
-router.get('/:id/edit', function (req, res) {
-  // find photo 
-  Photo.findOne({_id : req.params.id}, function (err, photo) {
-    // ++edit_photo.jade
-    res.render('edit_photo', {photo : photo});
-  });
-});
-
 // Saves new photo id
 // post gallery goes here to test for making new ones
 // this route accepts new user data from the client
-router.post('/', function (req, res) {
+router.post('/', ensureAuthenticated, function (req, res) {
   console.log(req.body);
   // creates a newPhoto item with that data 
   var newPhoto = new Photo({
@@ -78,13 +99,15 @@ router.post('/', function (req, res) {
 });
 
 // Delete Gallery Photo :id
-router.delete('/:id', function (req, res) {
+router.delete('/:id', ensureAuthenticated, function (req, res) {
   Photo.remove({_id: req.params.id}, function (err){
     if (err) throw err;
     // Redirects to '/' Root
     res.redirect('/');
   });
 });
+
+
 
 module.exports = router;
 
