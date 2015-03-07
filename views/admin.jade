@@ -2,12 +2,12 @@ extends ./gallery.jade
 
 block content
   ul
-    each photo in photos
+    for photo in photos
       li
         span.author= photo.author
         br
         a(href="/gallery/#{photo._id}/edit")
           button edit
         br
-        form(action="/gallery/#{photo._id}?_method=DELETE" method="photo")
+        form(action="/gallery/#{photo._id}?_method=DELETE" method="POST")
           button delete

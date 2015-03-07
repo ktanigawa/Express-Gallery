@@ -33,6 +33,10 @@ body {
   @include gallery-font($aluminum, normal, 1em);
 }
 
+h3 {
+  @include gallery-font($aluminum, bold, 1em);
+}
+
 header {
   padding-top: 1em;
   // background-color: red;
@@ -113,7 +117,7 @@ header {
   img {
     margin-bottom: 1em;
   }
-  
+
   p {
     margin-bottom: 1em;
   }

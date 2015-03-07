@@ -20,8 +20,13 @@ html(lang="en")
       section.top-bar-section
         ul.right
           li.divider
-          li.active
-            a(href="/gallery/new") + New Photo
+          li.has-dropdown
+            a(href="/login") Login
+            ul.dropdown
+              li
+                a(href="/gallery/admin") Admin
+              li
+                a(href="/gallery/new") + New Photo
 
     .row
       .large-12.columns
