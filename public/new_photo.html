@@ -1,0 +1,15 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CRUD Gallery App</title><link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.css"><link rel="stylesheet" href="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick-theme.css"><link rel="stylesheet" href="/css/styles.css"></head><body><nav data-topbar class="top-bar"><ul class="title-area"><li class="name"><h1><a href="#"></a></h1></li><li class="toggle-topbar menu-icon"><a href="#"><span>menu</span></a></li></ul><section class="top-bar-section"><ul class="right"><li class="divider"></li><li class="active"><a href="/gallery/new">+ New Photo</a></li></ul></section></nav><div class="row"><div class="large-12 columns"><header><div class="row"><div class="large-8 columns"><div class="panel"><h1 class="name"><a href="#">_Crunkitekt</a></h1></div></div><div class="large-4 columns"><div class="panel"><p>Welcome to our online portfolio. We are a small group of passioante designers and architects, looking to change and create amazing digital images to inspire others to follow in our innovative steps.</p></div></div></div></header><div class="row"><div class="large-12 columns"><h3>Add New Photo</h3><div data-section="" class="section-container tabs"><section class="section"><div data-slug="panel1" class="content"><form action="/gallery" method="POST" class="new_photo_form"><div class="row collapse"><div class="large-2 columns"><label class="inline">Author</label></div><div class="large-10 columns"><input id="author" type="text" placeholder="Jane Smith" name="author"></div></div><div class="row collapse"><div class="large-2 columns"><label class="inline"> Link to Image</label></div><div class="large-10 columns"><input id="link" type="text" placeholder="http://www.website.com/image.jpg" name="link"></div></div><label>Description</label><textarea rows="4" name="description"></textarea><button type="submit" class="radius button">Submit</button></form></div></section></div></div></div></div></div><script src="/bower_components/modernizr/modernizr.js"></script><script src="/bower_components/jquery/dist/jquery.min.js"></script><script src="/bower_components/foundation/js/foundation.min.js"></script><script src="//cdn.jsdelivr.net/jquery.slick/1.4.1/slick.min.js"></script><script>$(document).foundation();
+$(function() {
+  $('.slick-slider').slick({
+    dots: true,
+    speed: 500,
+    responsive: [
+      {
+        breakpoint: 1000,
+        settings: {
+            arrows: false
+        }
+      }
+    ]
+  });
+});</script></body></html>

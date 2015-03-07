@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var Photo = require('./../models/photo');
 
 //app.get('/') route will look like router.list
 // Renders Main Gallery Page

@@ -2,15 +2,15 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var app = express();
-var gallery = require('./controllers/gallery');
 
 var mongoose = require('mongoose');
 // /photo is pointing to the database name
 mongoose.connect('mongodb://localhost/photo');
-var Photo = require('../models/photo');
+var Photo = require('./models/photo');
+var gallery = require('./controllers/gallery');
 
 // Middleware
-app.use(express.static(__dirname + '/public'));
+app.use(express.static(__dirname + '/../public'));
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.set('view engine', 'jade');
