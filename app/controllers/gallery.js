@@ -25,7 +25,7 @@ router.get('/admin', ensureAuthenticated, function (req, res) {
 // Renders Main Gallery Page
 router.list = function (req, res) {
   // calls all photos in database
-  Photo.find(function (err, photos ) {
+  Photo.find().sort({created_at:-1}).limit(6).exec(function (err, photos ) {
     if (err) throw err;
     console.log(photos);
     // rendering jade template gallery all of the photos are passed to template
@@ -69,9 +69,11 @@ router.get('/:id/edit', ensureAuthenticated, function (req, res) {
 router.get('/:id', function (req, res) {
   //find photo by id, cb get photo back
   Photo.findOne({_id : req.params.id}, function (err, photo) {
-    if (err) throw err;
-    // gives template photo that is found
-    res.render('photo', { photo: photo });
+    Photo.find().sort({created_at:-1}).limit(3).exec(function (err, photos){
+      if (err) throw err;
+      // gives template photo that is found
+      res.render('photo', { photo: photo, photos: photos });   
+    });
   });
 });
 

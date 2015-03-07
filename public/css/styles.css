@@ -3057,7 +3057,6 @@ header {
 #photos .panel {
   margin-bottom: 1em; }
   #photos .panel p {
-    background-image: url("/assets/photo1.jpg");
     height: 160px;
     background-size: cover; }
 #photos .large-12.columns .row {
