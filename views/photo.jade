@@ -1,14 +1,15 @@
 extends ./gallery.jade
 
 block content
+  #main-photo
   .row
     .large-12.columns
-      h3 Karen Tanigawa
+      h3= photo.author
       .row
         .large-8.columns
           .panel
-            img(src="/assets/photo1.jpg" alt="Photo 1")
-            p Hello. This is a building.
+            img(src="#{photo.link}" alt="Photo 1")
+            p= photo.description
         .large-4.columns.show-for-large-up#photos
           .panel
             p

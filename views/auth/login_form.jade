@@ -1,0 +1,22 @@
+extends ./../gallery.jade
+
+block content
+  #login-form
+    .row
+      .large-8.medium-8.columns.large-centered.medium-centered
+        h3 Login
+        .section-container.tabs(data-section='')
+          section.section
+            .content(data-slug='panel1')
+              form(action="/login", method="POST", class="login_form")
+                .row.collapse
+                  .large-2.columns
+                    label.inline Username: 
+                  .large-10.columns
+                    input#username(type='text', placeholder='your_username', name="username")
+                .row.collapse
+                  .large-2.columns
+                    label.inline  Password:
+                  .large-10.columns
+                    input#password(type='password', placeholder='******', name="password")
+                button.radius.button(type='submit') Log In
