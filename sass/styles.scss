@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=PT+Sans:400,700|Roboto+Condensed:400italic,700italic,700,400);
 @import "partials/settings";
 @import "partials/foundation";
 
@@ -5,6 +6,7 @@
   MIXINS
  */
 @mixin gallery-font($gal-font-color: $iron, $gal-font-weight: normal, $gal-font-size: 1em) {
+  font-family: 'Roboto Condensed', sans-serif;
   color: $gal-font-color;
   font-weight: $gal-font-weight;
   font-size: $gal-font-size;
@@ -33,6 +35,14 @@ body {
   @include gallery-font($aluminum, normal, 1em);
 }
 
+table {
+  thead {
+    th {
+      text-align: left;
+    }
+  }
+}
+
 h3 {
   @include gallery-font($aluminum, bold, 1em);
 }
@@ -50,10 +60,22 @@ a {
   transition: opacity .25s ease-in-out;
   -moz-transition: opacity .25s ease-in-out;
   -webkit-transition: opacity .25s ease-in-out;
-
+ 
   &:hover {
     opacity: 0.5;
   }
+}
+
+button.save {
+  margin-right: 1em;
+}
+
+.different-user {
+  color: $aluminum;
+  // font-size: .8em;
+  // line-height: .8em;
+  // @include gallery-font($aluminum, normal, .8em);
+
 }
 
 header {
@@ -116,6 +138,7 @@ header {
     p {
       height: 160px;
       background-size: cover;
+      margin-bottom: 0;
     }
   }
 
