@@ -73,7 +73,7 @@ router.get('/:id/edit', ensureAuthenticated, function (req, res) {
   // find photo 
   Photo.findOne({_id : req.params.id}, function (err, photo) {
     // ++edit_photo.jade
-    res.render('edit_photo', {photo : photo, logged_in : true, username: username });
+    res.render('edit_photo', {photo : photo, logged_in : true, username: req.user.username });
   });
 });
 
