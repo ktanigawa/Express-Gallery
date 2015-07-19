@@ -10,6 +10,13 @@ function ensureAuthenticated (req, res, next) {
   res.redirect('/login');
 }
 
+function getUsername (req, res) {
+  if (req.isAuthenticated()) {
+    return req.user.username;
+  }
+  return false;
+}
+
 router.get('/admin', ensureAuthenticated, function (req, res) {
   // calls all photos in database
   Photo.find(function (err, photos ) {
@@ -17,7 +24,7 @@ router.get('/admin', ensureAuthenticated, function (req, res) {
     console.log(photos);
     // rendering jade template gallery all of the photos are passed to template
     // for photo in photos
-    res.render('admin', { photos : photos });
+    res.render('admin', { photos : photos, logged_in : true, username : req.user.username });
   });
 });
 
@@ -25,12 +32,17 @@ router.get('/admin', ensureAuthenticated, function (req, res) {
 // Renders Main Gallery Page
 router.list = function (req, res) {
   // calls all photos in database
-  Photo.find().sort({created_at:-1}).limit(6).exec(function (err, photos ) {
+  Photo.find().sort({created_at:-1}).exec(function (err, photos ) {
     if (err) throw err;
     console.log(photos);
     // rendering jade template gallery all of the photos are passed to template
     // for photo in photos
-    res.render('gallery', { photos : photos });
+    var userLoggedIn = getUsername(req, res);
+    if (userLoggedIn) {
+      res.render('gallery', { photos : photos, logged_in : true, username : req.user.username });
+    } else {
+      res.render('gallery', { photos : photos, logged_in : false });
+    }
   });
 };
 
@@ -38,7 +50,7 @@ router.list = function (req, res) {
 // Renders gallery photo form 
 // url /gallery/new
 router.get('/new', ensureAuthenticated, function (req, res) {
-  res.render('new_photo');
+  res.render('new_photo', { logged_in : true, username : req.user.username });
 });
 
 
@@ -61,7 +73,7 @@ router.get('/:id/edit', ensureAuthenticated, function (req, res) {
   // find photo 
   Photo.findOne({_id : req.params.id}, function (err, photo) {
     // ++edit_photo.jade
-    res.render('edit_photo', {photo : photo});
+    res.render('edit_photo', {photo : photo, logged_in : true, username: req.user.username });
   });
 });
 
@@ -72,7 +84,12 @@ router.get('/:id', function (req, res) {
     Photo.find().sort({created_at:-1}).limit(3).exec(function (err, photos){
       if (err) throw err;
       // gives template photo that is found
-      res.render('photo', { photo: photo, photos: photos });   
+      var userLoggedIn = getUsername(req, res);
+      if (userLoggedIn) {
+        res.render('photo', { photo: photo, photos: photos, logged_in : true, username : req.user.username });
+      } else {
+        res.render('photo', { photo: photo, photos: photos, logged_in : false });
+      }
     });
   });
 });

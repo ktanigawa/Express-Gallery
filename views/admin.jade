@@ -1,13 +1,26 @@
 extends ./gallery.jade
 
 block content
-  ul
-    for photo in photos
-      li
-        span.author= photo.author
-        br
-        a(href="/gallery/#{photo._id}/edit")
-          button edit
-        br
-        form(action="/gallery/#{photo._id}?_method=DELETE" method="POST")
-          button delete
+  .row
+    .large-12.columns
+      table
+          thead
+            tr
+              th Author
+              th(width="50%") Photo
+              th 
+              th
+          tbody
+            for photo in photos
+              tr
+                td.author= photo.author
+                td
+                  a.th(href="/gallery/#{photo._id}/edit")
+                    img(src="#{photo.link}", alt="#{photo.author}")
+                td
+                  a(href="/gallery/#{photo._id}/edit")
+                    button edit
+                td
+                  form(action="/gallery/#{photo._id}?_method=DELETE" method="POST")
+                    button.alert delete
+                    

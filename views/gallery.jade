@@ -16,15 +16,19 @@ html(lang="en")
             a(href="#")
         li.toggle-topbar.menu-icon
           a(href="#")
-            span menu
+            span
       section.top-bar-section
         ul.right
+          li
+            - if (logged_in)
+              a(href="/login") Welcome, #{username}! 
+                span.different-user Different User?
+            - else
+              a(href="/login") Login
           li.divider
           li.has-dropdown
-            a(href="/login") Login
+            a(href="/gallery/admin") Admin
             ul.dropdown
-              li
-                a(href="/gallery/admin") Admin
               li
                 a(href="/gallery/new") + New Photo
 
@@ -33,13 +37,13 @@ html(lang="en")
 
         header
           .row
-            .large-8.columns
+            .large-8.medium-4.columns
               .panel
                 h1.name
                   a(href="/") _Crunkitekt
-            .large-4.columns
+            .large-4.medium-4.columns
               .panel
-                p Welcome to our online portfolio. We are a small group of passioante designers and architects, looking to change and create amazing digital images to inspire others to follow in our innovative steps.
+                p Welcome to our online portfolio. We are a small group of passionate designers and architects, looking to change and create amazing digital images to inspire others to follow in our innovative steps.
         block content
           #content
             .slider-container
@@ -48,38 +52,18 @@ html(lang="en")
                   .slick-slider
                     for photo in photos
                       div
-                        img(src='#{photo.link}', alt='#{photo.author}')
+                        a(href="/gallery/#{photo._id}")
+                          img.fade(src='#{photo.link}', alt='#{photo.author}')
             #photos
               .row
                 .large-12.columns
                   .row
                     for photo in photos
-                      .large-4.medium-4.columns
+                      .large-4.medium-4.columns.end
                         .panel
                           a(href="/gallery/#{photo._id}")
-                            p(style="background-image: url('#{photo.link}')")
+                            p.fade(style="background-image: url('#{photo.link}')")
                             span.author= photo.author
-
-                  //- .row
-                  //-   .large-4.medium-4.columns
-                  //-     .panel
-                  //-       p
-                  //-   .large-4.medium-4.columns
-                  //-     .panel
-                  //-       p
-                  //-   .large-4.medium-4.columns
-                  //-     .panel
-                  //-       p
-                  //- .row
-                  //-   .large-4.medium-4.columns
-                  //-     .panel
-                  //-       p
-                  //-   .large-4.medium-4.columns
-                  //-     .panel
-                  //-       p
-                  //-   .large-4.medium-4.columns
-                  //-     .panel
-                  //-       p
 
     script(src="/bower_components/modernizr/modernizr.js")
     script(src="/bower_components/jquery/dist/jquery.min.js")
@@ -88,7 +72,14 @@ html(lang="en")
     script.
       $(document).foundation();
       $(function() {
+        $('button.cancel').click(function() {
+          parent.history.back();
+          return false;
+          });
+
         $('.slick-slider').slick({
+          autoplay: true,
+          autoplaySpeed: 3000,
           dots: true,
           speed: 500,
           responsive: [

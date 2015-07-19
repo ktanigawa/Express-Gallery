@@ -19,5 +19,6 @@ block content
                 .large-10.columns
                   input#link(type='text', value="#{photo.link}", name="link")
               label Description
-              textarea(rows='4', name="description")= photo.description
-              button.radius.button(type='submit') Submit
+              textarea(rows='5', name="description")= photo.description
+              button.radius.button.save(type='submit') Submit
+              button.radius.button.cancel Cancel

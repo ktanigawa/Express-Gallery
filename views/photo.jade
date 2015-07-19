@@ -14,5 +14,5 @@ block content
             for photo in photos
               .panel
                 a(href="/gallery/#{photo._id}")
-                  p(style="background-image: url('#{photo.link}')")
+                  p.fade(style="background-image: url('#{photo.link}')")
                   span.author= photo.author
